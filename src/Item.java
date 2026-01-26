@@ -17,6 +17,6 @@ public class Item {
     public String getDescription() { return description; }
 
     public void use(Player player) {
-        System.out.println("Этим предметом нельзя пользоваться!");
+        System.out.println("С этим предметом нельзя взаимодействовать!");
     }
 }

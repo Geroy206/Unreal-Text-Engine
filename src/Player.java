@@ -6,7 +6,7 @@ public class Player {
     private final int ID;
     private float hp;
     private Location currentLocation;
-    private Inventory inventory;
+    private final Inventory inventory;
 
     public Player (String name, int ID, float hp, Location currentLocation) {
         this.name = name;

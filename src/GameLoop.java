@@ -6,14 +6,15 @@ import java.util.Map;
 public class GameLoop {
     private boolean isRunning = true;
     private GameState gameState = GameState.EXPLORING;
-    GameInput INPUT = new GameInput();
-    GameManager gameManager = new GameManager();
+    private final GameInput INPUT = new GameInput();
+    private final GameManager gameManager = new GameManager();
     private final Map<String, Command> commands = new HashMap<>();
 
     public GameLoop() {
         commands.put("exit", new ExitCommand());
         commands.put("take", new TakeCommand());
         commands.put("inv", new InventoryCommand());
+        commands.put("look", new LookAroundCommand());
     }
 
     public GameState getGameState() { return gameState; }

@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class GameManager {
 
-    // работа с локацией
+    // Работа с локациями
     public Map<Integer, Location> createPlayerChoices(Location currentLocation) {
         List<Location> availablePaths = currentLocation.getPaths();
 

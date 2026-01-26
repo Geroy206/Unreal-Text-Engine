@@ -5,14 +5,17 @@ public class Location {
     private final int ID;
     private LocationStatus status;
     private String description;
+    private final List<String> view;
     private final List<Location> paths;
     private final Inventory inventory;
 
-    public Location (String name, int ID, LocationStatus status, String description, List<Location> Paths) {
+
+    public Location (String name, int ID, LocationStatus status, String description, List<String> view, List<Location> Paths) {
         this.name = name;
         this.ID = ID;
         this.status = status;
         this.description = description;
+        this.view = Objects.requireNonNullElseGet(view, ArrayList::new);;
         this.paths = Objects.requireNonNullElseGet(Paths, ArrayList::new);
         this.inventory = new Inventory(null);
     }
@@ -61,6 +64,8 @@ public class Location {
     public void setStatus(LocationStatus newStatus) {
         this.status = newStatus;
     }
+
+    public List<String> getView() { return Collections.unmodifiableList(view); }
 
     public Location handleSelection(int prompt, Map<Integer, Location> choices) {
         if (choices.containsKey(prompt)) {
