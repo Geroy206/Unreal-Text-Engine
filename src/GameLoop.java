@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -7,7 +8,12 @@ public class GameLoop {
     GameState gameState = GameState.EXPLORING;
     GameInput INPUT = new GameInput();
     GameManager gameManager = new GameManager();
+    private final Map<String, Command> commands = new HashMap<>();
 
+    public GameLoop() {
+        commands.put("exit", new ExitCommand());
+        commands.put("take", new TakeCommand());
+    }
 
    public void loop(Player player, World world) {
 
@@ -23,18 +29,18 @@ public class GameLoop {
 
            String prompt = INPUT.getInput();
 
-           
-           if (gameState != GameState.IN_INVENTORY) {
-               if (SystemCommand.isCommand(prompt)) {
-                   isRunning = SystemCommand.execute(prompt);
 
+           if (gameState == GameState.EXPLORING) {
+               Command cmd = commands.get(prompt);
 
+               if (cmd != null) {
+                   this.isRunning = cmd.execute(player);
                } else {
                    try {
-                       int choiceNumber = Integer.parseInt(prompt);
-                       gameManager.choicesHandler(choiceNumber, player, currentChoices);
+                       int choice = Integer.parseInt(prompt);
+                       gameManager.choicesHandler(choice, player, currentChoices);
                    } catch (NumberFormatException e) {
-                       System.out.println("Некорректный ввод: Введите номер или команду.\n");
+                       System.out.println("Некорректный ввод! Введите номер или команду.\n");
                    }
                }
            }
