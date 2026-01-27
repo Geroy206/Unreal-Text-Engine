@@ -10,7 +10,7 @@ public class Location {
     private final Inventory inventory;
     private Integer requiredKeyId;
 
-    public Location (String name, int ID, LocationStatus status, String description, List<String> view, List<Location> Paths) {
+    public Location (String name, int ID, LocationStatus status, String description, List<String> view, List<Location> Paths, Integer requiredKeyId) {
         this.name = name;
         this.ID = ID;
         this.status = status;
@@ -18,6 +18,7 @@ public class Location {
         this.view = Objects.requireNonNullElseGet(view, ArrayList::new);;
         this.paths = Objects.requireNonNullElseGet(Paths, ArrayList::new);
         this.inventory = new Inventory(null);
+        this.requiredKeyId = requiredKeyId;
     }
 
     public String getName() { return name; }

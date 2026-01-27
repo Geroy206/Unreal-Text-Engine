@@ -27,7 +27,7 @@ public class GameLoop {
 
     public void setGameState(GameState newState) { gameState = newState; }
 
-   public void loop(Player player, World world) {
+   public void loop(Player player) {
 
        while (isRunning) {
            if (gameState == GameState.EXPLORING) {

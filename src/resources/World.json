@@ -1,0 +1,40 @@
+[
+  {
+    "id": 200,
+    "name": "Перекрёсток 1",
+    "status": "OPEN",
+    "description": "Перекрёсток номер 1",
+    "view": [],
+    "neighborIds": [201, 202, 100],
+    "items": [
+      { "id": 500, "name": "Ключ", "description": "Тестовый ключ", "isConsumable": false }
+    ]
+  },
+  {
+    "id": 201,
+    "name": "Перекрёсток 2",
+    "status": "OPEN",
+    "description": "Перекрёсток номер 2",
+    "neighborIds": [200]
+  },
+  {
+    "id": 202,
+    "name": "Перекрёсток 2",
+    "status": "OPEN",
+    "description": "Перекрёсток номер 2",
+    "neighborIds": [200]
+  },
+  {
+    "id": 100,
+    "name": "DEBUG",
+    "status": "LOCKED",
+    "requiredKeyId": 500,
+    "description": "DEBUG",
+    "view": ["Членин", "ТЕСТ", "Яйца"],
+    "neighborIds": [200],
+    "items": [
+      { "id": 300, "name": "Пиздец", "description": "DEBUG", "isConsumable": false },
+      { "id": 300, "name": "Colt M1911", "description": "Американский пистолет .45 калибра", "damage": 20.0 }
+    ]
+  }
+]
