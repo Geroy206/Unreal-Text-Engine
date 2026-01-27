@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class Weapon extends Item {
     private final float damage;
@@ -14,5 +15,10 @@ public class Weapon extends Item {
         System.out.println("Вы совершаете суицид!");
 
         player.takeDamage(500);
+    }
+
+    @Override
+    public List<String> getSupportedInteractions() {
+        return List.of("Использовать", "Осмотреть", "Выбросить");
     }
 }

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Item {
     protected final String name;
@@ -18,5 +21,9 @@ public class Item {
 
     public void use(Player player) {
         System.out.println("С этим предметом нельзя взаимодействовать!");
+    }
+
+    public List<String> getSupportedInteractions() {
+        return List.of("Осмотреть", "Выбросить");
     }
 }

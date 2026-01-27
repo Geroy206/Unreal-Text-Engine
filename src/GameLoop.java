@@ -9,12 +9,18 @@ public class GameLoop {
     private final GameInput INPUT = new GameInput();
     private final GameManager gameManager = new GameManager();
     private final Map<String, Command> commands = new HashMap<>();
+    private final Map<String, ItemInteract> itemInteract = new HashMap<>();
+    private Item itemSelected;
 
     public GameLoop() {
         commands.put("exit", new ExitCommand());
         commands.put("take", new TakeCommand());
         commands.put("inv", new InventoryCommand());
         commands.put("look", new LookAroundCommand());
+
+        itemInteract.put("Использовать", new UseInteract());
+        itemInteract.put("Осмотреть", new InspectInteract());
+        itemInteract.put("Выбросить", new DropInteract());
     }
 
     public GameState getGameState() { return gameState; }
@@ -55,10 +61,32 @@ public class GameLoop {
                    if (choice == 0) {
                        gameState = GameState.EXPLORING;
                    } else if (itemChoices.containsKey(choice)) {
-                       Item selected = itemChoices.get(choice);
-                       selected.use(player);
+                       itemSelected = itemChoices.get(choice);
+                       gameState = GameState.ITEM_INTERACTION;
                    } else {
                        System.out.println("Нет такого предмета.");
+                   }
+               } catch (NumberFormatException e) {
+                   System.out.println("Введите номер предмета или 0 для выхода.");
+               }
+           }
+           else if (gameState == GameState.ITEM_INTERACTION) {
+               Map<Integer, String> ItemActionChoices = gameManager.createItemActionChoices(itemSelected);
+
+               String prompt = INPUT.getInput();
+
+               try {
+                   int choice = Integer.parseInt(prompt);
+
+                   if (choice == 0) {
+                        gameState = GameState.IN_INVENTORY;
+
+                   } else if (ItemActionChoices.containsKey(choice)) {
+                       ItemInteract interact = itemInteract.get(ItemActionChoices.get(choice));
+
+                       interact.execute(player, itemSelected, this);
+                   } else {
+                       System.out.println("Нет такого действия");
                    }
                } catch (NumberFormatException e) {
                    System.out.println("Введите номер предмета или 0 для выхода.");

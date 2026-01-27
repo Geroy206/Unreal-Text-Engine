@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,9 +70,26 @@ public class GameManager {
             int choice = i + 1;
             Item item = items.get(i);
             itemMap.put(choice, item);
-            System.out.println(choice + ". " + item.getName() + " — " + item.getDescription());
+            System.out.println(choice + ". " + item.getName());
         }
         System.out.println("0. Назад");
         return itemMap;
+    }
+
+    public Map<Integer, String> createItemActionChoices(Item item) {
+        Map<Integer, String> actionMap = new HashMap<>();
+
+        List<String> allowedActions = item.getSupportedInteractions();
+
+        System.out.println("======== " + item.getName() + " ========");
+        for (int i = 0; i < allowedActions.size(); i++) {
+            int choice = i + 1;
+            String actionName = allowedActions.get(i);
+            actionMap.put(choice, actionName);
+            System.out.println(choice + ". " + actionName);
+        }
+        System.out.println("0. Назад");
+
+        return actionMap;
     }
 }
