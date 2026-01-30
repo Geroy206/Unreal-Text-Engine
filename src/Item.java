@@ -23,7 +23,7 @@ public class Item {
 
     public boolean isConsumable() { return isConsumable; }
 
-    public void use(Player player) {
+    public void use(Entity target) {
         System.out.println("С этим предметом нельзя взаимодействовать!");
     }
 

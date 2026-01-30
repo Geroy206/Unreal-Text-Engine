@@ -19,9 +19,9 @@
   },
   {
     "id": 202,
-    "name": "Перекрёсток 2",
+    "name": "Перекрёсток 3",
     "status": "OPEN",
-    "description": "Перекрёсток номер 2",
+    "description": "Перекрёсток номер 3",
     "neighborIds": [200]
   },
   {
@@ -34,7 +34,7 @@
     "neighborIds": [200],
     "items": [
       { "id": 300, "name": "Пиздец", "description": "DEBUG", "isConsumable": false },
-      { "id": 300, "name": "Colt M1911", "description": "Американский пистолет .45 калибра", "damage": 20.0 }
+      { "id": 301, "name": "Colt M1911", "description": "Американский пистолет .45 калибра", "damage": 20.0 }
     ]
   }
 ]

@@ -94,11 +94,22 @@ public class GameLoop {
            }
            else if (gameState == GameState.IN_COMBAT) {
                System.out.println("Временно не реализовано.");
+
+               String prompt = INPUT.getInput();
+
+               try {
+                   int choice = Integer.parseInt(prompt);
+
+
+
+               } catch (NumberFormatException e) {
+                   System.out.println("Некорректный ввод!\n");
+               }
            }
 
-           if (player.isAlive()) {
-               isRunning = false;
-           }
+
+           isRunning = player.isAlive();
+
        }
 
        INPUT.closeScanner();

@@ -15,7 +15,7 @@ public class Location {
         this.ID = ID;
         this.status = status;
         this.description = description;
-        this.view = Objects.requireNonNullElseGet(view, ArrayList::new);;
+        this.view = Objects.requireNonNullElseGet(view, ArrayList::new);
         this.paths = Objects.requireNonNullElseGet(Paths, ArrayList::new);
         this.inventory = new Inventory(null);
         this.requiredKeyId = requiredKeyId;

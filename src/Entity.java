@@ -27,4 +27,6 @@ public abstract class Entity {
     }
 
     public Inventory getInventory() { return inventory; }
+
+    public void getHeal(float toRestore) { this.hp += toRestore; }
 }

@@ -22,6 +22,10 @@ public class Main {
 
         Player player = new Player("Debug", 1, 100, startLocation);
 
+
+
+        //player.getCurrentLocation().getInventory().addItem();
+
         looper.loop(player);
     }
 }

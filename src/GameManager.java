@@ -62,6 +62,9 @@ public class GameManager {
 
                     nextLocation.setStatus(LocationStatus.OPEN);
                 }
+                else if (nextLocation.getStatus() == LocationStatus.FIGHT) {
+
+                }
 
                 currentLocation.setStatus(LocationStatus.EXPLORED);
                 player.moveTo(nextLocation);

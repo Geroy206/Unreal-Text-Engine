@@ -25,4 +25,6 @@ public class Player extends Entity {
     public void changeEquippedWeapon(Weapon newWeapon) {
         this.equippedWeapon = newWeapon;
     }
+
+    public float giveDamage() { return equippedWeapon.giveDamage(); }
 }
