@@ -26,7 +26,6 @@ public class Main {
         Weapon testweapon = new Weapon("Тестовый анигилятор", 601, "ТЕСТ", 20);
 
 
-        player.takeDamage(90);
         player.getCurrentLocation().getInventory().addItem(bandage);
         player.setEquippedWeapon(testweapon);
 

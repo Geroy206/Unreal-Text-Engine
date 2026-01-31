@@ -72,6 +72,10 @@ public class GameManager {
                 player.moveTo(nextLocation);
                 System.out.println("Вы перешли в: " + nextLocation.getName() + "\n");
 
+                if (nextLocation.getStatus() == LocationStatus.FIGHT) {
+                    System.out.println("Но на вашем пути оказались враги!\n");
+                }
+
             } else {
                 System.out.println("Путь закрыт! Кажется, вам нужен какой-то особый предмет...\n");
             }

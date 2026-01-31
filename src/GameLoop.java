@@ -98,6 +98,11 @@ public class GameLoop {
                }
            }
            else if (gameState == GameState.IN_COMBAT) {
+               if (player.getCurrentLocation().getStatus() != LocationStatus.FIGHT) {
+                   gameState =  GameState.EXPLORING;
+                   continue;
+               }
+
                Enemy enemy = player.getCurrentLocation().getOneEnemy();
                combatManager.printEntityHp(player, enemy);
                combatManager.createCombatActions(player, enemy);
@@ -106,8 +111,7 @@ public class GameLoop {
                try {
                    int choice = Integer.parseInt(prompt);
 
-                   combatManager.choicesHandler(choice, player, enemy, this);
-
+                   combatManager.choicesHandler(choice, player, enemy);
                } catch (NumberFormatException e) {
                    System.out.println("Некорректный ввод!\n");
                }

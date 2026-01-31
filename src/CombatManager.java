@@ -31,7 +31,7 @@ public class CombatManager {
         System.out.println("3. Попытаться сбежать");
     }
 
-    public void choicesHandler(int prompt, Player player, Enemy enemy, GameLoop loop) {
+    public void choicesHandler(int prompt, Player player, Enemy enemy) {
         switch (prompt) {
             case 1:
                 enemy.takeDamage(player.giveDamage());
@@ -48,9 +48,9 @@ public class CombatManager {
 
                     if (player.getCurrentLocation().getEnemyList().isEmpty()) {
                         System.out.println(player.getCurrentLocation().getName() + ": Очищена от врагов!\n");
-                        loop.setGameState(GameState.EXPLORING);
                         player.getCurrentLocation().setStatus(LocationStatus.OPEN);
 
+                        return;
                     } else {
                         System.out.println("\nВ локации остались враги! ");
                         enemy = player.getCurrentLocation().getOneEnemy();
@@ -64,8 +64,6 @@ public class CombatManager {
 
                     if (player.getHp() <= 0) {
                         System.out.println("\nВы погибли! Игра окончена.");
-
-                        loop.setGameState(GameState.GAME_OVER);
                     }
                 }
                 break;
