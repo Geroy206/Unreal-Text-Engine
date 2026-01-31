@@ -1,8 +1,10 @@
 # Unreal Text Engine
 
+### *Unreal Text Engine* - The most (maybe) advanced engine for creating text games!
+
 # English
 
-A lightweight and extensible console-based engine for building text adventure games (RPGs) in Java. This project was developed as a deep dive into software architecture, design patterns, and data-driven game development.
+A lightweight and extensible console-based engine for building text adventure games (RPGs) in Java. This project was developed as a deep dive into software architecture, design patterns, data-driven game development, and just for fun)))
 
 ---
 
@@ -57,7 +59,7 @@ The project is under active development. The following features and modules are 
 - [ ] **Scripting Engine Integration**: Integrate a lightweight scripting language (like Lua or Groovy) for quest logic to avoid recompiling Java classes for every minor change.
 
 # Русский
-Кроссплатформенный консольный движок для создания текстовых приключенческих игр (RPG) на Java. Проект разработан в процессе изучения архитектуры ПО и паттернов проектирования.
+Кроссплатформенный консольный движок для создания текстовых приключенческих игр (RPG) на Java. Проект разработан в процессе изучения архитектуры ПО и паттернов проектирования и по приколу)))
 
 ---
 
