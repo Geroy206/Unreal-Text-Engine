@@ -85,11 +85,28 @@ public class WorldBuilder {
         int id = ((Number) map.get("id")).intValue();
         String desc = (String) map.get("description");
 
+        // Проверка на оружие
         if (map.containsKey("damage")) {
             float damage = ((Number) map.get("damage")).floatValue();
             return new Weapon(name, id, desc, damage);
         }
 
+        // Проверка на предмет восстановления
+        if (map.containsKey("healValue")) {
+            float healValue = ((Number) map.get("healValue")).floatValue();
+
+            int healAmount = map.containsKey("healAmount")
+                    ? ((Number) map.get("healAmount")).intValue()
+                    : 1;
+
+            boolean isConsumable = map.containsKey("isConsumable")
+                    ? (boolean) map.get("isConsumable")
+                    : true;
+
+            return new RecoveryItem(name, id, desc, isConsumable, healValue, healAmount);
+        }
+
+        // Проверка на обычный предмет
         boolean isConsumable = false;
         if (map.containsKey("isConsumable")) {
             isConsumable = (boolean) map.get("isConsumable");
@@ -104,7 +121,16 @@ public class WorldBuilder {
         float hp = ((Number) map.get("hp")).floatValue();
         float damage = ((Number) map.get("damage")).floatValue();
 
-        return new Enemy(name, id, hp, damage);
+        Enemy enemy = new Enemy(name, id, hp, damage);
+
+        if (map.containsKey("items") && map.get("items") instanceof List) {
+            List<Map<String, Object>> enemyItemsData = (List<Map<String, Object>>) map.get("items");
+            for (Map<String, Object> itemData : enemyItemsData) {
+                enemy.getInventory().addItem(parseItem(itemData));
+            }
+        }
+
+        return enemy;
     }
 }
 

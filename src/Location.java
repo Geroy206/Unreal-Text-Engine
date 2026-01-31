@@ -61,6 +61,8 @@ public class Location {
         }
     }
 
+    public Location getFirstPath() { return paths.getFirst(); }
+
     public Inventory getInventory() { return inventory; }
 
     public void setRequiredKeyId(Integer keyId) {

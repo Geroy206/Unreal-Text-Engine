@@ -1,6 +1,4 @@
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class GameLoop {
@@ -104,14 +102,21 @@ public class GameLoop {
                }
 
                Enemy enemy = player.getCurrentLocation().getOneEnemy();
-               combatManager.printEntityHp(player, enemy);
-               combatManager.createCombatActions(player, enemy);
+               Map<Integer, Weapon> weaponMap = combatManager.createWeaponChoices(player);
+
+               if (combatManager.getCombatState() == CombatManager.CombatState.WEAPON_SELECT) {
+                   combatManager.printWeaponChoices(weaponMap);
+               } else {
+                   combatManager.printCombatData(player, enemy);
+                   combatManager.createCombatActions(player, enemy);
+               }
+
                String prompt = INPUT.getInput();
 
                try {
                    int choice = Integer.parseInt(prompt);
 
-                   combatManager.choicesHandler(choice, player, enemy);
+                   combatManager.choicesHandler(choice, player, enemy, weaponMap);
                } catch (NumberFormatException e) {
                    System.out.println("Некорректный ввод!\n");
                }

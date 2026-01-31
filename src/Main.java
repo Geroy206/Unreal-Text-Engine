@@ -22,12 +22,12 @@ public class Main {
 
         Player player = new Player("Debug", 1, 100, startLocation);
 
-        RecoveryItem bandage = new RecoveryItem("Бинт", 600, "Тестовый бинт", true, 50.0f, 1);
-        Weapon testweapon = new Weapon("Тестовый анигилятор", 601, "ТЕСТ", 20);
+        //RecoveryItem bandage = new RecoveryItem("Бинт", 600, "Тестовый бинт", true, 50.0f, 1);
+        //Weapon testweapon = new Weapon("Тестовый анигилятор", 601, "ТЕСТ", 20);
 
 
-        player.getCurrentLocation().getInventory().addItem(bandage);
-        player.setEquippedWeapon(testweapon);
+        //player.getCurrentLocation().getInventory().addItem(bandage);
+        //player.setEquippedWeapon(testweapon);
 
         looper.loop(player);
     }

@@ -8,7 +8,8 @@
     "neighborIds": [201, 202, 100],
     "items": [
       { "id": 500, "name": "Ключ", "description": "Тестовый ключ", "isConsumable": false },
-      { "id": 301, "name": "Colt M1911", "description": "Американский пистолет .45 калибра", "damage": 20.0 }
+      { "id": 301, "name": "Colt M1911", "description": "Американский пистолет .45 калибра", "damage": 20.0 },
+      { "id": 501, "name": "Бинт", "description": "Обычный бинт", "healValue": 50.0, "healAmount": 1, "isConsumable": true }
     ]
   },
   {
@@ -36,9 +37,17 @@
       { "id": 300, "name": "Пиздец", "description": "DEBUG", "isConsumable": false }
     ],
     "enemyList": [
-      { "name": "Зомби", "id": 900, "hp": 50.0,"damage": 10.0 },
-      { "name": "Зомби2", "id": 901, "hp": 50.0,"damage": 5.0 }
+  { 
+    "name": "Зомби", 
+    "id": 900, 
+    "hp": 50.0, 
+    "damage": 10.0,
+    "items": [
+      { "id": 601, "name": "Гнилая плоть", "description": "Фу, гадость", "isConsumable": true }
     ]
+  },
+  { "name": "Зомби2", "id": 901, "hp": 50.0, "damage": 5.0 }
+]
   },
   {
     "id": 101,
