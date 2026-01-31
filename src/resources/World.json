@@ -7,7 +7,8 @@
     "view": [],
     "neighborIds": [201, 202, 100],
     "items": [
-      { "id": 500, "name": "Ключ", "description": "Тестовый ключ", "isConsumable": false }
+      { "id": 500, "name": "Ключ", "description": "Тестовый ключ", "isConsumable": false },
+      { "id": 301, "name": "Colt M1911", "description": "Американский пистолет .45 калибра", "damage": 20.0 }
     ]
   },
   {
@@ -15,7 +16,7 @@
     "name": "Перекрёсток 2",
     "status": "OPEN",
     "description": "Перекрёсток номер 2",
-    "neighborIds": [200]
+    "neighborIds": [200, 101]
   },
   {
     "id": 202,
@@ -26,15 +27,29 @@
   },
   {
     "id": 100,
-    "name": "DEBUG",
-    "status": "LOCKED",
-    "requiredKeyId": 500,
+    "name": "Тестовая локация с боёвкой",
+    "status": "FIGHT",
     "description": "DEBUG",
     "view": ["Членин", "ТЕСТ", "Яйца"],
     "neighborIds": [200],
     "items": [
-      { "id": 300, "name": "Пиздец", "description": "DEBUG", "isConsumable": false },
-      { "id": 301, "name": "Colt M1911", "description": "Американский пистолет .45 калибра", "damage": 20.0 }
+      { "id": 300, "name": "Пиздец", "description": "DEBUG", "isConsumable": false }
+    ],
+    "enemyList": [
+      { "name": "Зомби", "id": 900, "hp": 50.0,"damage": 10.0 },
+      { "name": "Зомби2", "id": 901, "hp": 50.0,"damage": 5.0 }
+    ]
+  },
+  {
+    "id": 101,
+    "name": "Тестовая закрытая локация",
+    "status": "LOCKED",
+    "requiredKeyId": 500,
+    "description": "DEBUG",
+    "view": ["Членин", "ТЕСТ", "Яйца"],
+    "neighborIds": [201],
+    "items": [
+      { "id": 300, "name": "Пиздец", "description": "DEBUG", "isConsumable": false }
     ]
   }
 ]

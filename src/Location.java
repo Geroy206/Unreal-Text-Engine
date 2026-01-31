@@ -7,16 +7,18 @@ public class Location {
     private String description;
     private final List<String> view;
     private final List<Location> paths;
+    private final List<Enemy> enemyList;
     private final Inventory inventory;
     private Integer requiredKeyId;
 
-    public Location (String name, int ID, LocationStatus status, String description, List<String> view, List<Location> Paths, Integer requiredKeyId) {
+    public Location (String name, int ID, LocationStatus status, String description, List<String> view, List<Location> Paths, List<Enemy> enemyList, Integer requiredKeyId) {
         this.name = name;
         this.ID = ID;
         this.status = status;
         this.description = description;
         this.view = Objects.requireNonNullElseGet(view, ArrayList::new);
         this.paths = Objects.requireNonNullElseGet(Paths, ArrayList::new);
+        this.enemyList = Objects.requireNonNullElseGet(enemyList, ArrayList::new);
         this.inventory = new Inventory(null);
         this.requiredKeyId = requiredKeyId;
     }
@@ -81,6 +83,14 @@ public class Location {
     }
 
     public List<String> getView() { return Collections.unmodifiableList(view); }
+
+    public List<Enemy> getEnemyList() { return Collections.unmodifiableList(enemyList); }
+
+    public Enemy getOneEnemy() { return enemyList.getFirst(); }
+
+    public void addEnemy(Enemy newEnemy) { enemyList.add(newEnemy); }
+
+    public void removeEnemy(Enemy target) { enemyList.remove(target); }
 
     public Location handleSelection(int prompt, Map<Integer, Location> choices) {
         if (choices.containsKey(prompt)) {

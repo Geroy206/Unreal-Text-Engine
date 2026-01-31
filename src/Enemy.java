@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class Enemy extends Entity {
     private final float damage;
@@ -8,4 +9,8 @@ public class Enemy extends Entity {
     }
 
     public float giveDamage() { return damage; }
+
+    public void dropItem(Location loc) {
+        loc.getInventory().addItem(this.getInventory().getItem());
+    }
 }

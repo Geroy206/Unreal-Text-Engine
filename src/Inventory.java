@@ -12,6 +12,8 @@ public class Inventory {
 
     public List<Item> getContents() { return Collections.unmodifiableList(contents); }
 
+    public Item getItem() { return contents.getFirst(); }
+
     public void addItem(Item newItem) {
         contents.add(newItem);
     }

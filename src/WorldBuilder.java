@@ -16,6 +16,7 @@ public class WorldBuilder {
         List<String> view;
         List<Integer> neighborIds;
         List<Map<String, Object>> items;
+        List<Map<String, Object>> enemyList;
     }
 
     public static Location loadWorld(String filePath) {
@@ -39,7 +40,8 @@ public class WorldBuilder {
                         locStatus,
                         data.description,
                         data.view != null ? data.view : new ArrayList<>(),
-                        new ArrayList<>(),
+                        new ArrayList<>(), // paths
+                        new ArrayList<>(), // enemyList
                         data.requiredKeyId
                 );
 
@@ -48,6 +50,12 @@ public class WorldBuilder {
                         loc.getInventory().addItem(parseItem(itemData));
                     }
                 }
+                if (data.enemyList != null) {
+                    for (Map<String, Object> enemyData : data.enemyList) {
+                        loc.addEnemy(parseEnemy(enemyData));
+                    }
+                }
+
                 tempRegistry.put(data.id, loc);
             }
 
@@ -89,4 +97,14 @@ public class WorldBuilder {
 
         return new Item(name, id, desc, isConsumable);
     }
+
+    private static Enemy parseEnemy(Map<String, Object> map) {
+        String name = (String) map.get("name");
+        int id = ((Number) map.get("id")).intValue();
+        float hp = ((Number) map.get("hp")).floatValue();
+        float damage = ((Number) map.get("damage")).floatValue();
+
+        return new Enemy(name, id, hp, damage);
+    }
 }
+

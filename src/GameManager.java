@@ -40,7 +40,7 @@ public class GameManager {
         return choices;
     }
 
-    public void choicesHandler(int prompt, Player player, Map<Integer, Location> choices) {
+    public void choicesHandler(int prompt, Player player, Map<Integer, Location> choices, GameLoop loop) {
         Location currentLocation = player.getCurrentLocation();
         Location nextLocation = currentLocation.handleSelection(prompt, choices);
 
@@ -51,19 +51,21 @@ public class GameManager {
                     int keyId = nextLocation.getRequiredKeyId();
                     Item keyItem = player.getInventory().getItemById(keyId);
 
-                    if (keyItem != null && keyItem.isConsumable()) {
+                    System.out.println("Вы использовали " + keyItem.getName() + " и открыли проход!");
+                    if (keyItem.isConsumable()) {
                         player.getInventory().removeItem(keyItem);
-                        System.out.println("Вы использовали " + keyItem.getName() + " и открыли проход!");
                         System.out.println("(Предмет '" + keyItem.getName() + "' был израсходован)");
                     } else {
-                        System.out.println("Вы использовали " + keyItem.getName() + " и открыли проход!");
                         System.out.println("(Предмет '" + keyItem.getName() + "' остался у вас)");
                     }
 
                     nextLocation.setStatus(LocationStatus.OPEN);
-                }
-                else if (nextLocation.getStatus() == LocationStatus.FIGHT) {
+                } else if (nextLocation.getStatus() == LocationStatus.FIGHT) {
+                    loop.setGameState(GameState.IN_COMBAT);
+                } else if (nextLocation.getStatus() == LocationStatus.OPEN || nextLocation.getStatus() == LocationStatus.EXPLORED) {
 
+                } else {
+                    throw new IllegalStateException("Необработанный статус локации: " + nextLocation.getStatus());
                 }
 
                 currentLocation.setStatus(LocationStatus.EXPLORED);

@@ -8,6 +8,7 @@ public class GameLoop {
     private GameState gameState = GameState.EXPLORING;
     private final GameInput INPUT = new GameInput();
     private final GameManager gameManager = new GameManager();
+    private final CombatManager combatManager= new CombatManager();
     private final Map<String, Command> commands = new HashMap<>();
     private final Map<String, ItemInteract> itemInteract = new HashMap<>();
     private Item itemSelected;
@@ -30,6 +31,10 @@ public class GameLoop {
    public void loop(Player player) {
 
        while (isRunning) {
+           if (!player.isAlive()) {
+               gameState = GameState.GAME_OVER;
+           }
+
            if (gameState == GameState.EXPLORING) {
                Location playerLocation = player.getCurrentLocation();
                System.out.println("======== " + player.getLocName() + " ========");
@@ -48,7 +53,7 @@ public class GameLoop {
                } else {
                    try {
                        int choice = Integer.parseInt(prompt);
-                       gameManager.choicesHandler(choice, player, currentChoices);
+                       gameManager.choicesHandler(choice, player, currentChoices, this);
                    } catch (NumberFormatException e) {
                        System.out.println("Некорректный ввод! Введите номер или команду.\n");
                    }
@@ -93,23 +98,23 @@ public class GameLoop {
                }
            }
            else if (gameState == GameState.IN_COMBAT) {
-               System.out.println("Временно не реализовано.");
-
+               Enemy enemy = player.getCurrentLocation().getOneEnemy();
+               combatManager.printEntityHp(player, enemy);
+               combatManager.createCombatActions(player, enemy);
                String prompt = INPUT.getInput();
 
                try {
                    int choice = Integer.parseInt(prompt);
 
-
+                   combatManager.choicesHandler(choice, player, enemy, this);
 
                } catch (NumberFormatException e) {
                    System.out.println("Некорректный ввод!\n");
                }
            }
-
-
-           isRunning = player.isAlive();
-
+           else if (gameState == GameState.GAME_OVER) {
+               isRunning = false;
+           }
        }
 
        INPUT.closeScanner();

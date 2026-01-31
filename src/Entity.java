@@ -3,6 +3,7 @@ public abstract class Entity {
     protected final String name;
     private final int ID;
     protected float hp;
+    protected float maxHp;
     protected final Inventory inventory;
 
     public Entity(String name, int id, float hp) {
@@ -10,6 +11,7 @@ public abstract class Entity {
         this.ID = id;
         this.hp = hp;
         this.inventory = new Inventory(null);
+        this.maxHp = hp;
     }
 
     public String getName() { return name; }
@@ -28,5 +30,22 @@ public abstract class Entity {
 
     public Inventory getInventory() { return inventory; }
 
-    public void getHeal(float toRestore) { this.hp += toRestore; }
+    public boolean getHeal(float toRestore) {
+        System.out.println("\nHP до использование аптечки: " + this.hp);
+
+        if (hp < maxHp) {
+            System.out.println(this.getName() + " использовал аптечку!");
+            this.hp += toRestore;
+
+            if (hp > maxHp) {
+                hp = maxHp;
+            }
+        } else {
+            System.out.println("\nВаше HP максимально. Аптечка сохранена.");
+            return false;
+        }
+
+        System.out.println("\nHP после использования аптечка: " + this.hp);
+        return true;
+    }
 }

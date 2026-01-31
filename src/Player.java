@@ -22,7 +22,7 @@ public class Player extends Entity {
 
     public Weapon getEquippedWeapon() { return equippedWeapon; }
 
-    public void changeEquippedWeapon(Weapon newWeapon) {
+    public void setEquippedWeapon(Weapon newWeapon) {
         this.equippedWeapon = newWeapon;
     }
 
