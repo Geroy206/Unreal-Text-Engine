@@ -65,8 +65,6 @@ public class GameLoop {
                    }
                }
            }
-           // можно попробовать реализовать такую штуку чтобы trigger возвращал bool тип во временную переменную
-           // И тогда можно реализовать несколько ивентов в одной локации, нужно будет сделать списком event , который будет срабатывать по очереди.
            else if (gameState == GameState.EVENT) {
                if (player.getCurrentLocation().getStatus() == LocationStatus.EVENT) {
                    GameEvent event = player.getCurrentLocation().getEvent();
