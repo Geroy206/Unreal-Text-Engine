@@ -16,6 +16,7 @@ public class Main {
         GameLoop looper = new GameLoop();
 
         Location startLocation = WorldBuilder.loadWorld("src/resources/world.json");
+        //Location starLocationGen = WorldGeneration.Generation();
 
         if (startLocation == null) {
             System.err.println("Критическая ошибка: Не удалось загрузить мир игры.");

@@ -64,12 +64,8 @@ public class GameManager {
                     nextLocation.setStatus(LocationStatus.OPEN);
                 } else if (nextLocation.getStatus() == LocationStatus.FIGHT) {
                     loop.setGameState(GameState.IN_COMBAT);
-                } else if (nextLocation.getStatus() == LocationStatus.OPEN || nextLocation.getStatus() == LocationStatus.EXPLORED) {
-
                 } else if (nextLocation.getStatus() == LocationStatus.EVENT) {
                     loop.setGameState(GameState.EVENT);
-                } else {
-                    throw new IllegalStateException("Необработанный статус локации: " + nextLocation.getStatus());
                 }
 
                 currentLocation.setStatus(LocationStatus.EXPLORED);
